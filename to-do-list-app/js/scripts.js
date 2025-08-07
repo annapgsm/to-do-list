@@ -1,5 +1,5 @@
 function newItem(){ 
-    // Adding a new item to the list:
+    //Adding a new item to the list:
         let inputValue = $('#input').val(); // Gets the input
         
         if (inputValue === '') {           // If the input is empty, alert the user
@@ -11,7 +11,7 @@ function newItem(){
             $('#list').append(li);           // Otherwise, append the <li> to the list
         }
 
-    //2. Crossing an item out on double click:
+    //Crossing an item out on double click:
 	    li.on("dblclick", function crossOut() {
 		li.toggleClass("strike");
 	    });
