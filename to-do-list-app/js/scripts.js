@@ -1,3 +1,58 @@
+// Run this function when the DOM (page) is fully loaded
+$(function() {
+
+  // 1. Make the list <ol id="list"> sortable (drag-and-drop reordering)
+  $('#list').sortable();
+
+  // 2. When the "Add" button (div with id=button) is clicked, call newItem()
+  $('#button').on('click', function() {
+    
+    // --- ADD NEW ITEM TO LIST ---
+
+    // Get the text from the input field and remove extra spaces
+    let inputValue = $('#input').val().trim();
+
+    // If the input is empty, alert and stop
+    if (!inputValue) {
+      alert('You must write something!');
+      return; // exit function
+    }
+
+    // Create a new <li> element and set its text to the input value
+    let li = $('<li></li>').text(inputValue);
+
+    // --- DOUBLE CLICK TO MARK ITEM OFF ---
+    // When you double-click on the list item, toggle the "strike" CSS class
+    // (this adds/removes line-through effect and grey color)
+    li.on('dblclick', function() {
+      $(this).toggleClass('strike');
+    });
+
+    // --- ADD DELETE "X" BUTTON ---
+    // Create a button element for deleting the list item
+    let deleteButton = $('<button></button>').text('X');
+
+    // When the delete button is clicked, add the "delete" class to this li
+    // The delete CSS rule hides the element (display: none)
+    deleteButton.on('click', function() {
+      li.addClass('delete');  // could also use li.remove() to remove from DOM
+    });
+
+    // Append the delete button to the li
+    li.append(deleteButton);
+
+    // Append the li to the list
+    $('#list').append(li);
+
+    // Clear the input after adding the item
+    $('#input').val('');
+  });
+});
+
+
+/* Career Foundry Version that did not work:
+
+
 function newItem(){ 
     //Adding a new item to the list:
         let inputValue = $('#input').val(); // Gets the input
@@ -30,5 +85,5 @@ function newItem(){
         $('#list').sortable();
 }
 
-
+*/
 
